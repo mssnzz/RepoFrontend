@@ -22,8 +22,8 @@ const DEFAULT_REPOS: RepoInfo[] = [
     owner: "mssnzz",
   },
   {
-    repo: "next.js",
-    owner: "vercel",
+    repo: "GithubHandlerFrontend",
+    owner: "mssnzz",
   },
   {
     repo: "react",
