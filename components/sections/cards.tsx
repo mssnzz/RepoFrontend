@@ -65,9 +65,7 @@ export const CardsSection: React.FC<CardsSectionProps> = ({ selectedRepo }) => {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{repoData.commits.length}</div>
-          <p className="text-xs text-muted-foreground">
-            +20.1% from last month
-          </p>
+
         </CardContent>
       </Card>
       <Card>
@@ -87,9 +85,7 @@ export const CardsSection: React.FC<CardsSectionProps> = ({ selectedRepo }) => {
           <div className="text-2xl font-bold">
             {repoData.repoInfo.forks || 0}
           </div>
-          <p className="text-xs text-muted-foreground">
-            +180.1% from last month
-          </p>
+
         </CardContent>
       </Card>
       <Card>
@@ -107,7 +103,6 @@ export const CardsSection: React.FC<CardsSectionProps> = ({ selectedRepo }) => {
         </CardHeader>
         <CardContent>
           <div className="text-2xl font-bold">{repoData.repoInfo.watchers}</div>
-          <p className="text-xs text-muted-foreground">+19% from last month</p>
         </CardContent>
       </Card>
       <Card>
@@ -127,7 +122,6 @@ export const CardsSection: React.FC<CardsSectionProps> = ({ selectedRepo }) => {
           <div className="text-2xl font-bold">
             {repoData.repoInfo.open_issues}
           </div>
-          <p className="text-xs text-muted-foreground">+201 since last hour</p>
         </CardContent>
       </Card>
     </div>

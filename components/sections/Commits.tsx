@@ -101,11 +101,7 @@ export function CommitsList({ selectedRepo }: { selectedRepo: RepoInfo }) {
                 {commit.commit.message}
               </div>
               <div>
-                {commit.commit.verification.verified ? (
-                  <Badge className="success">Approved</Badge>
-                ) : (
-                  <Badge className="danger">Not Approved</Badge>
-                )}
+                <Badge className="success">Commit successfully</Badge>
               </div>
             </TableCell>
           </TableRow>

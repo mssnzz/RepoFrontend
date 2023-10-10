@@ -1,7 +1,7 @@
 "use client";
 import { ModeToggle } from "@/components/dark-mode";
 import { MainNav } from "@/components/main-nav";
-import TeamSwitcher from "@/components/team-switcher";
+import TeamSwitcher from "@/components/repo-switcher";
 import Image from "next/image";
 import { ThemeProvider } from "next-themes";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import { ClipLoader } from "react-spinners";
 import { fetchRepoData } from "@/services/api";
 import { CommitsList } from "@/components/sections/Commits";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import RepoSwitcher from "@/components/repo-switcher";
 
 export type RepoInfo = {
   repo: string;
@@ -32,6 +33,14 @@ const DEFAULT_REPOS: RepoInfo[] = [
   {
     repo: "react",
     owner: "facebook",
+  },
+  {
+    repo: "next.js",
+    owner: "vercel",
+  },
+  {
+    repo: "nest",
+    owner: "nestjs",
   },
 ];
 
@@ -63,7 +72,7 @@ export default function Home() {
     <ThemeProvider attribute="class">
       <div className="border-b">
         <div className="flex h-16 items-center px-4 sm:px-6 md:px-8 lg:px-24 xl:px-40">
-          <TeamSwitcher
+          <RepoSwitcher
             selectedRepo={selectedRepo}
             setSelectedRepo={setSelectedRepo}
             repos={repos}

@@ -49,7 +49,7 @@ const extract_github_info = (url: string): Partial<RepoInfo> => {
   return {};
 };
 
-const TeamSwitcher: React.FC<TeamSwitcherProps> = ({
+const RepoSwitcher: React.FC<TeamSwitcherProps> = ({
   className,
   selectedRepo,
   setSelectedRepo,
@@ -218,4 +218,4 @@ const TeamSwitcher: React.FC<TeamSwitcherProps> = ({
   );
 };
 
-export default TeamSwitcher;
+export default RepoSwitcher;
