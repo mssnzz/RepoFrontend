@@ -23,11 +23,11 @@ export type RepoInfo = {
 
 const DEFAULT_REPOS: RepoInfo[] = [
   {
-    repo: "GithubHandlerBacked",
+    repo: "RepoBackend",
     owner: "mssnzz",
   },
   {
-    repo: "GithubHandlerFrontend",
+    repo: "RepoFrontend",
     owner: "mssnzz",
   },
   {
