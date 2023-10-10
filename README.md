@@ -1,7 +1,7 @@
 
-# RepoFrontend Project Setup
+# GitHub Repository System Frontend Project Setup
 
-Welcome to the RepoFrontend project! This guide will walk you through the steps required to set up the project on your local machine.
+Welcome to the GitHub Repository System Frontend project! This guide will walk you through the steps required to set up the project on your local machine.
 
 ## Prerequisites
 
