@@ -47,7 +47,6 @@ export const CardsSection: React.FC<CardsSectionProps> = ({ selectedRepo }) => {
   if (!repoData) {
     return null; // o puedes mostrar algún mensaje de error o placeholder.
   }
-  console.log(repoData);
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 pt-6">
       <Card>

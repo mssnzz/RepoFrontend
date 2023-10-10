@@ -47,7 +47,6 @@ export function MembersList({ selectedRepo }: { selectedRepo: RepoInfo }) {
             avatarUrl: commit.author.avatar_url,
           };
         }
-        console.log(commit.author.avatar_url);
       });
 
       const totalCommits = data.commits.length;
