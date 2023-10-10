@@ -7,9 +7,13 @@ import { ThemeProvider } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { CardsSection } from "@/components/sections/cards";
-import HeatmapChart from "@/components/chart";
+import { HeatmapChart } from "@/components/chart";
 import { MembersList } from "@/components/sections/Members";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ClipLoader } from "react-spinners";
+import { fetchRepoData } from "@/services/api";
+import { CommitsList } from "@/components/sections/Commits";
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 export type RepoInfo = {
   repo: string;
@@ -30,26 +34,39 @@ const DEFAULT_REPOS: RepoInfo[] = [
     owner: "facebook",
   },
 ];
+
 export default function Home() {
   const [selectedRepo, setSelectedRepo] = useState<RepoInfo>(DEFAULT_REPOS[0]);
   const [repos, setRepos] = useState<RepoInfo[]>(DEFAULT_REPOS);
+  const [loading, setLoading] = useState(true);
 
   const addRepo = (newRepo: RepoInfo) => {
-    setRepos(prevRepos => [...prevRepos, newRepo]);
+    setRepos((prevRepos) => [...prevRepos, newRepo]);
   };
 
+  useEffect(() => {
+    setLoading(true);
+    fetchRepoData(selectedRepo.owner, selectedRepo.repo).then(() => {
+      setLoading(false);
+    });
+  }, [selectedRepo]);
+
+  if (loading) {
+    return (
+      <div className="loading-overlay">
+        <ClipLoader color="#000" />
+      </div>
+    );
+  }
 
   return (
     <ThemeProvider attribute="class">
-       <div className="border-b">
-        <div
-          className="flex h-16 items-center"
-          style={{ paddingLeft: "15%", paddingRight: "15%" }}
-        >
-          <TeamSwitcher 
-            selectedRepo={selectedRepo} 
-            setSelectedRepo={setSelectedRepo} 
-            repos={repos} 
+      <div className="border-b">
+        <div className="flex h-16 items-center px-4 sm:px-6 md:px-8 lg:px-24 xl:px-40">
+          <TeamSwitcher
+            selectedRepo={selectedRepo}
+            setSelectedRepo={setSelectedRepo}
+            repos={repos}
             addRepo={addRepo}
           />
           <MainNav className="mx-6" />
@@ -60,42 +77,39 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Breadcrumbs */}
-      <div
-        className="flext-1 space-y-4 p-8 pt-9"
-        style={{ paddingLeft: "15%", paddingRight: "15%" }}
-      >
-        <div className="flex items-start justify-between">
+      <div className="flext-1 space-y-4 p-6 sm:p-6 md:p-8 lg:px-24 xl:px-40 sm:ml-3 sm:pt-2">
+        <div className="flex flex-col sm:flex-row items-start justify-between">
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tight">Dashboard</h2>
-            <Breadcrumbs />
+            <Breadcrumbs selectedRepo={selectedRepo} />
           </div>
-          <div className="flex items-center space-x-2">
-            <Button>Download</Button>
+          <div className="flex items-center space-x-2 mt-4 sm:mt-0">
+            <Button variant="outline" onClick={() => window.location.reload()}>
+              <ReloadIcon />
+              &nbsp;Refresh repository
+            </Button>
           </div>
         </div>
-        <div className="flex">
-          <div className="w-9/12">
-            {/* Cards */}
+        <div className="flex flex-col lg:flex-row">
+          <div className="w-full lg:w-8/12">
             <CardsSection selectedRepo={selectedRepo} />
-
-
-            {/* Chart */}
             <h5 className="text-xl font-bold tracking-tight mt-8">
               Project Contributors
             </h5>
-            <HeatmapChart />
-            {/* Members */}
+            <div className="mt-7">
+              <HeatmapChart selectedRepo={selectedRepo} />
+            </div>
+
             <h5 className="text-xl font-bold tracking-tight mt-8">
               Members status
             </h5>
-            <div className="border mt-6">
-              <MembersList />
+            <div className="border mt-6 w-full">
+              <MembersList selectedRepo={selectedRepo} />
             </div>
           </div>
-          <div className="w-3/12 p-3 mt-3">
-            <div className="border rounded">
-              <MembersList />
+          <div className="w-full lg:w-4/12 lg:p-3 sm:p-0  mt-3 lg:mt-3">
+            <div className="border rounded w-full">
+              <CommitsList selectedRepo={selectedRepo} />
             </div>
           </div>
         </div>

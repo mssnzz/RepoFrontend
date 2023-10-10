@@ -31,7 +31,7 @@ import { Label } from "./ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { fetchRepoData } from "@/services/api";
 import { ClipLoader } from "react-spinners";
-import { RepoInfo } from "../app/page";  // Ajusta la importación al archivo correcto
+import { RepoInfo } from "../app/page"; // Ajusta la importación al archivo correcto
 
 interface TeamSwitcherProps {
   className?: string;
@@ -49,8 +49,12 @@ const extract_github_info = (url: string): Partial<RepoInfo> => {
   return {};
 };
 
-const TeamSwitcher: React.FC<TeamSwitcherProps> = ({ 
-  className, selectedRepo, setSelectedRepo, repos, addRepo 
+const TeamSwitcher: React.FC<TeamSwitcherProps> = ({
+  className,
+  selectedRepo,
+  setSelectedRepo,
+  repos,
+  addRepo,
 }) => {
   const [open, setOpen] = React.useState(false);
 
@@ -126,7 +130,7 @@ const TeamSwitcher: React.FC<TeamSwitcherProps> = ({
               <CommandEmpty>No repository found.</CommandEmpty>
               {repos.map((repoInfo) => (
                 <CommandItem
-                  key={repoInfo.owner}
+                  key={`${repoInfo.owner}-${repoInfo.repo}`} // Combinación de owner y repo
                   onSelect={() => handleRepoSelect(repoInfo)}
                   className="text-sm"
                 >
@@ -143,7 +147,7 @@ const TeamSwitcher: React.FC<TeamSwitcherProps> = ({
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
-                      maxWidth: "calc(100% - 60px)", // Ajusta este valor según necesidades
+                      maxWidth: "calc(100% - 60px)",
                     }}
                   >
                     {repoInfo.owner}/{repoInfo.repo}
@@ -151,7 +155,8 @@ const TeamSwitcher: React.FC<TeamSwitcherProps> = ({
                   <CheckIcon
                     className={cn(
                       "ml-auto h-4 w-4",
-                      selectedRepo.owner === repoInfo.owner
+                      selectedRepo.owner === repoInfo.owner &&
+                        selectedRepo.repo === repoInfo.repo
                         ? "opacity-100"
                         : "opacity-0"
                     )}
