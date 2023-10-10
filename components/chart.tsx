@@ -82,14 +82,13 @@ export function HeatmapChart({ selectedRepo }: { selectedRepo: RepoInfo }) {
   };
 
   const openCommitDialog = (x: number, y: number) => {
-    console.log("Celda clickeada:", x, y);
+
 
     const dayCommits = allCommits.filter(commit => {
       const date = new Date(commit.commit.committer.date);
       return date.getUTCDay() === y && date.getUTCDate() - 1 === x;
     });
 
-    console.log("Commits del día:", dayCommits);
 
     setDialogData({
       day: x + 1,
@@ -97,7 +96,6 @@ export function HeatmapChart({ selectedRepo }: { selectedRepo: RepoInfo }) {
       commits: dayCommits,
     });
 
-    console.log("Datos del diálogo:", dialogData);
   };
 
   const closeCommitDialog = () => {

@@ -1,7 +1,7 @@
 // api.ts
 import axios from 'axios';
 
-const BASE_URL = 'https://repobackend-production.up.railway.app/';
+const BASE_URL = 'https://repobackend-production.up.railway.app';
 
 export const fetchRepoData = async (owner: string, repo: string) => {
   try {
