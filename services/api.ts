@@ -1,7 +1,7 @@
 // api.ts
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = 'https://githubsysbackend-acpkby7w1-manuelarturosanz-gmailcom.vercel.app/';
 
 export const fetchRepoData = async (owner: string, repo: string) => {
   try {
