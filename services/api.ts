@@ -1,7 +1,7 @@
 // api.ts
 import axios from 'axios';
 
-const BASE_URL = 'https://githubsysbackend-acpkby7w1-manuelarturosanz-gmailcom.vercel.app/';
+const BASE_URL = 'https://repobackend-production.up.railway.app/github/facebook/react';
 
 export const fetchRepoData = async (owner: string, repo: string) => {
   try {
